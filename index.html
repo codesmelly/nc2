@@ -29,11 +29,11 @@
 <script>
     const hideFullScreenButton = "";
     const buildUrl = "Build";
-    const loaderUrl = buildUrl + "/Build.loader.js";
+    const loaderUrl = buildUrl + "/nc2.loader.js";
     const config = {
-        dataUrl: buildUrl + "/Build.data.unityweb",
-        frameworkUrl: buildUrl + "/Build.framework.js.unityweb",
-        codeUrl: buildUrl + "/Build.wasm.unityweb",
+        dataUrl: buildUrl + "/nc2.data.unityweb",
+        frameworkUrl: buildUrl + "/nc2.framework.js.unityweb",
+        codeUrl: buildUrl + "/nc2.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "SmellyCode",
         productName: "NoobCrusher",
@@ -155,10 +155,8 @@
         const bridge = vkBridge.default;
         bridge.send("VKWebAppCheckNativeAds", {"ad_format": ad_format})
         .then(data => {
-          console.log('appCheckNativeAds');
           console.log(data);
-          //myGameInstance.SendMessage('VkBridge', 'CheckNativeAdsResult', JSON.stringify(data));             
-          console.log('appCheckNativeAds2');
+          myGameInstance.SendMessage('VkBridge', 'CheckNativeAdsResult', JSON.stringify(data));             
         })  
         .catch(error => console.log(error));      
     }
@@ -196,7 +194,19 @@
     }      
 
     function showBanner(location) {
-
+        const bridge = vkBridge.default;
+        bridge.send('VKWebAppShowBannerAd', {
+            banner_location: location
+        })
+            .then((data) => {
+                if (data.result) {
+                    
+                }
+            })
+            .catch((error) => {
+                // Ошибка
+                console.log(error);
+            });
     }
 
     function sendPost(text){
