@@ -152,7 +152,7 @@
         .catch(error => {
             console.log(error);
             console.log("6");
-            myGameInstance.SendMessage('VkBridge', 'LaunchParamsResult', JSON.stringify(error));
+            myGameInstance.SendMessage('VkBridge', 'LaunchParamsResult', 'error');
         });     
     }
     
