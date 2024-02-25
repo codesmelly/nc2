@@ -104,6 +104,7 @@
 
         bridge.send("VKWebAppInit", {})
         .then(data => {
+          console.log("1");
           myGameInstance.SendMessage('VkBridge', 'Initialized', JSON.stringify(data));  
         })  
         .catch(error => console.log(error));          
@@ -118,14 +119,17 @@
       switch(type) {
 
         case 'VKWebAppViewHide':
+            console.log("2");
           myGameInstance.SendMessage('VkBridge', 'WindowFocus', 'false');
           break;
 
         case 'VKWebAppViewRestore': 
+            console.log("3");
           myGameInstance.SendMessage('VkBridge', 'WindowFocus', 'true');
           break;
 
         case 'VKWebAppBannerAdClosedByUser':
+            console.log("4");
           myGameInstance.SendMessage('VkBridge', 'BannerClosedByUser');
           break;
 
@@ -142,10 +146,12 @@
         bridge.send("VKWebAppGetLaunchParams", {})
         .then(data => {
           console.log(data);
+          console.log("5");
             myGameInstance.SendMessage('VkBridge', 'LaunchParamsResult', JSON.stringify(data));
         })  
         .catch(error => {
             console.log(error);
+            console.log("6");
             myGameInstance.SendMessage('VkBridge', 'LaunchParamsResult', JSON.stringify(error));
         });     
     }
@@ -156,6 +162,7 @@
         bridge.send("VKWebAppCheckNativeAds", {"ad_format": ad_format})
         .then(data => {
           console.log(data);
+          console.log("7");
           myGameInstance.SendMessage('VkBridge', 'CheckNativeAdsResult', JSON.stringify(data));             
         })  
         .catch(error => console.log(error));      
@@ -173,9 +180,11 @@
         const bridge = vkBridge.default;
         bridge.send("VKWebAppShowNativeAds", {ad_format:"interstitial"})
         .then(data => {
+            console.log("8");
           myGameInstance.SendMessage('VkBridge', 'ShowInterstitialResult', JSON.stringify(data));
         })  
         .catch(error => {
+            console.log("9");
             myGameInstance.SendMessage('VkBridge', 'ShowInterstitialError', JSON.stringify(error));
             console.log(error);            
         });
@@ -185,9 +194,11 @@
         const bridge = vkBridge.default;
         bridge.send("VKWebAppShowNativeAds", {ad_format:"reward", use_waterfall:true})
         .then(data => {
+            console.log("10");
           myGameInstance.SendMessage('VkBridge', 'ShowRewardedResult', JSON.stringify(data));
         })  
         .catch(error => {
+            console.log("11");
             myGameInstance.SendMessage('VkBridge', 'ShowRewardedError', JSON.stringify(error));
             console.log(error);            
         });
@@ -227,6 +238,7 @@
         bridge.send("VKWebAppStorageGet",{"keys":[key]})
         .then(data => {
           console.log("Loaded form to storage");
+          console.log("12");
           myGameInstance.SendMessage('VkBridge', 'DataLoadedResult', JSON.stringify(data));
         });
     }
@@ -235,6 +247,7 @@
         const bridge = vkBridge.default;
         bridge.send("VKWebAppGetUserInfo")
         .then(data => { 
+            console.log("13");
           myGameInstance.SendMessage('VkBridge', 'AuthResult', JSON.stringify(data));
         })
         .catch(error => {
@@ -315,17 +328,21 @@
         }
         const bridge = vkBridge.default;
           bridge.send(nameMethod, obj).then(data => {
+            console.log("14");
             myGameInstance.SendMessage('VkBridge', 'SendResult', JSON.stringify(data));})
         .catch(error => {
+            console.log("15");
             myGameInstance.SendMessage('VkBridge', 'SendResult', JSON.stringify(error));
         });;
     }
 
     function CheckMobile() {
         if (mobile) {
+            console.log("16");
             myGameInstance.SendMessage('VkBridge', 'CheckMobileResult', 'true');
         }
         else {
+            console.log("17");
             myGameInstance.SendMessage('VkBridge', 'CheckMobileResult', 'false');
         }
     }
