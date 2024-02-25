@@ -157,7 +157,7 @@
         .then(data => {
           console.log('appCheckNativeAds');
           console.log(data);
-          myGameInstance.SendMessage('VkBridge', 'CheckNativeAdsResult', JSON.stringify(data));             
+          //myGameInstance.SendMessage('VkBridge', 'CheckNativeAdsResult', JSON.stringify(data));             
           console.log('appCheckNativeAds2');
         })  
         .catch(error => console.log(error));      
@@ -196,19 +196,7 @@
     }      
 
     function showBanner(location) {
-        const bridge = vkBridge.default;
-        bridge.send('VKWebAppShowBannerAd', {
-            banner_location: location
-        })
-            .then((data) => {
-                if (data.result) {
-                    
-                }
-            })
-            .catch((error) => {
-                // Ошибка
-                console.log(error);
-            });
+
     }
 
     function sendPost(text){
