@@ -155,8 +155,10 @@
         const bridge = vkBridge.default;
         bridge.send("VKWebAppCheckNativeAds", {"ad_format": ad_format})
         .then(data => {
+          console.log('appCheckNativeAds');
           console.log(data);
           myGameInstance.SendMessage('VkBridge', 'CheckNativeAdsResult', JSON.stringify(data));             
+          console.log('appCheckNativeAds2');
         })  
         .catch(error => console.log(error));      
     }
